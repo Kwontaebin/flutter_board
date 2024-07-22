@@ -11,7 +11,6 @@ const appbarTitle = TextStyle(
 final basicButton = ElevatedButton.styleFrom(
   backgroundColor: const Color.fromARGB(255, 149, 81, 222),
   minimumSize: const Size(400, 65),
-
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(50),
   ),
@@ -21,7 +20,6 @@ final basicButton = ElevatedButton.styleFrom(
 final postButton = ElevatedButton.styleFrom(
   backgroundColor: const Color.fromARGB(255, 6, 103, 248),
   minimumSize: const Size(350, 45),
-
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10),
   ),
@@ -34,4 +32,16 @@ const basicButtonText = TextStyle(
   fontWeight: FontWeight.bold,
   height: 10 / 10,
   color: Colors.white,
+);
+
+const postListId = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w700,
+  color: Colors.black,
+);
+
+const postListName = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.w500,
+  color: Colors.black
 );
