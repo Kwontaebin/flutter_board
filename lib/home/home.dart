@@ -15,8 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
   @override
   void initState() {
     // TODO: implement initState
@@ -56,43 +54,88 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 50, bottom: 40),
-              child: Container(
-                width: width90,
-                height: 50,
-                color: Colors.cyan,
+      body: Consumer<IdProvider>(
+          builder: (context, idProvider, child) {
+            return SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 50, bottom: 40),
+                    child: Container(
+                      width: width90,
+                      height: 50,
+                      color: Colors.cyan,
+                    ),
+                  ),
+                  SizedBox(
+                    width: width90,
+                    height: 500,
+                    child: postList(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: GestureDetector(
+                      onTap: () => {
+                        context.read<IdProvider>().setId(
+                            providerId,
+                            providerName,
+                            context.read<IdProvider>().pageNum + 1),
+                        print(context.read<IdProvider>().pageNum),
+                      },
+                      child: Container(
+                        width: width90,
+                        height: 50,
+                        color: Colors.deepPurpleAccent,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            SizedBox(
-              width: width90,
-              height: 500,
-              child: postList(),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: GestureDetector(
-                onTap: () => {
-                  context.read<IdProvider>().setId(providerId, providerName, context.read<IdProvider>().pageNum + 1),
-                  print(context.read<IdProvider>().pageNum),
-                },
-                child: Container(
-                  width: width90,
-                  height: 50,
-                  color: Colors.deepPurpleAccent,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+            );
+          }
+          // child: SizedBox(
+          //   width: double.infinity,
+          //   height: double.infinity,
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     mainAxisAlignment: MainAxisAlignment.start,
+          //     children: [
+          //       Padding(
+          //         padding: const EdgeInsets.only(top: 50, bottom: 40),
+          //         child: Container(
+          //           width: width90,
+          //           height: 50,
+          //           color: Colors.cyan,
+          //         ),
+          //       ),
+          //       SizedBox(
+          //         width: width90,
+          //         height: 500,
+          //         child: postList(),
+          //       ),
+          //       Padding(
+          //         padding: const EdgeInsets.only(top: 30),
+          //         child: GestureDetector(
+          //           onTap: () => {
+          //             context.read<IdProvider>().setId(providerId, providerName,
+          //                 context.read<IdProvider>().pageNum + 1),
+          //             print(context.read<IdProvider>().pageNum),
+          //           },
+          //           child: Container(
+          //             width: width90,
+          //             height: 50,
+          //             color: Colors.deepPurpleAccent,
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          ),
     );
   }
 
@@ -143,78 +186,68 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: width90,
-                        height: 100 / 2,
-                        color: CupertinoColors.lightBackgroundGray,
-
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: width10,
-                              height: double.infinity,
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 10, left: 20),
-                                child: Text(
-                                  snap.data[index]['id'].toString(),
-                                  style: postListId,
-                                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: width90,
+                      height: 100 / 2,
+                      color: CupertinoColors.lightBackgroundGray,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: width10,
+                            height: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 10, left: 20),
+                              child: Text(
+                                snap.data[index]['id'].toString(),
+                                style: postListId,
                               ),
                             ),
-
-                            SizedBox(
-                              width: width20,
-                              height: double.infinity,
-
-
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 12, left: 20),
-                                child: Text(
-                                  snap.data[index]['user_name'].toString(),
-                                  style: postListName,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+                          ),
+                          SizedBox(
+                            width: width20,
+                            height: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 12, left: 20),
+                              child: Text(
+                                snap.data[index]['user_name'].toString(),
+                                style: postListName,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
-
-                            SizedBox(
-                              width: width40,
-                              height: double.infinity,
-
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 12, left: 20),
-                                child: Text(
-                                  snap.data[index]['context'].toString(),
-                                  style: postListName,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+                          ),
+                          SizedBox(
+                            width: width40,
+                            height: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 12, left: 20),
+                              child: Text(
+                                snap.data[index]['context'].toString(),
+                                style: postListName,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
-
-                            SizedBox(
-                              width: 100,
-                              height: double.infinity,
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 12),
-                                child: Text(
-                                  snap.data[index]['date'].toString(),
-                                  style: postListName,
-                                ),
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 12),
+                              child: Text(
+                                snap.data[index]['date'].toString(),
+                                style: postListName,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               );
             },
@@ -225,8 +258,10 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
   Future _fetch() async {
-    var res = await http.get(Uri.parse("http://localhost:4000/getBoard/${context.read<IdProvider>().pageNum}"));
+    var res = await http.get(Uri.parse(
+        "http://localhost:4000/getBoard/${context.read<IdProvider>().pageNum}"));
     return json.decode(res.body);
   }
 }
