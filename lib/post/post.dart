@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_board/design.dart';
 import 'package:flutter_board/post/postSnapbar.dart';

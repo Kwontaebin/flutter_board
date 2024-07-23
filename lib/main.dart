@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_board/detail/detail.dart';
+import 'package:flutter_board/detail/update.dart';
 import 'package:flutter_board/home/home.dart';
 import 'package:flutter_board/login_sign/sign.dart';
 import 'package:flutter_board/post/post.dart';
@@ -29,6 +31,8 @@ class MyApp extends StatelessWidget {
         '/sign': (BuildContext context) => const SignPage(),
         '/home': (BuildContext context) => const HomePage(),
         '/post': (BuildContext context) => const PostPage(),
+        '/detail': (BuildContext context) => const DetailPage(id: ''),
+        '/update': (BuildContext context) => const UpdatePage(id: ''),
       },
     );
   }

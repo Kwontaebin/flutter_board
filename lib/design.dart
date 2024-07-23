@@ -45,3 +45,21 @@ const postListName = TextStyle(
   fontWeight: FontWeight.w500,
   color: Colors.black
 );
+
+const postListHeader = TextStyle(
+  fontSize: 25,
+  fontWeight: FontWeight.w900,
+  color: Colors.black,
+);
+
+const postListFooterText = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w600,
+  color: Colors.black,
+);
+
+const detailPageTitleText = TextStyle(
+  fontSize: 25,
+  fontWeight: FontWeight.w700,
+  color: Colors.black
+);
